@@ -1,0 +1,48 @@
+identity:
+  name: "add_memory"
+  author: "memtensor"
+  label:
+    en_US: "add memory"
+    zh_Hans: "记忆添加"
+description:
+  human:
+    en_US: "This tool can batch import one or more messages into the MemOS memory storage database, enabling retrieval in future conversations to support chat history management, user behavior tracking, and personalized interaction. "
+    zh_Hans: "本插件工具可以将一条或多条消息批量导入到MemOS记忆存储数据库，能够在未来的对话中检索，以支持聊天历史管理、用户行为跟踪和个性化交互。"
+  llm: "This tool can batch import one or more messages into the MemOS memory storage database."
+parameters:
+  - name: user_id
+    type: string
+    required: true
+    label:
+      en_US: user_id
+      zh_Hans: 用户ID
+    human_description:
+      en_US: "Unique identifier of the user associated with the message."
+      zh_Hans: "与消息相关联的用户的唯一标识符。"
+    llm_description: "Unique identifier of the user associated with the message."
+    form: llm
+  - name: conversation_id
+    type: string
+    required: true
+    label:
+      en_US: conversation_id
+      zh_Hans: 对话ID
+    human_description:
+      en_US: "Unique identifier of the conversation."
+      zh_Hans: "对话的唯一标识符。"
+    llm_description: "Unique identifier of the conversation."
+    form: llm
+  - name: messages
+    type: string
+    required: true
+    label:
+      en_US: messages
+      zh_Hans: 对话信息
+    human_description:
+      en_US: "Content of the message."
+      zh_Hans: "消息的内容。"
+    llm_description: "Content of the message."
+    form: llm
+extra:
+  python:
+    source: tools/memos_add.py

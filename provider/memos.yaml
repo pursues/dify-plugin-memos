@@ -1,0 +1,47 @@
+identity:
+  author: "memtensor"
+  name: "memos"
+  label:
+    en_US: "MemOS Memory Management"
+    zh_Hans: "MemOS记忆管理工具"
+  description:
+    en_US: "MemOS Memory Management is a powerful plugin that enables users to access the addition and search functions of MemOS memory, access conversation content, and provide users with efficient memory management services, helping to enhance the consistency and personalization level of conversations between users and AI."
+    zh_Hans: "MemOS记忆管理工具是一款强大的插件，它允许用户访问MemOS记忆的添加和搜索功能，能够存取对话内容，为用户提供高效的记忆管理服务，助力于提升用户与AI对话的一致性和个性化水平。"
+  icon: "icon.svg"
+  tags:
+  - search
+  - productivity
+  - utilities
+  - other
+credentials_for_provider:
+  memos_url:
+    type: text-input
+    required: true
+    label:
+      en_US: MemOS URL
+      zh_Hans: MemOS URL
+    placeholder:
+      en_US: Please input your MemOS URL
+      zh_Hans: 请输入你的 MemOS URL
+    help:
+      en_US: Get your MemOS URL from MemOS
+      zh_Hans: 从 MemOS 获取您的 MemOS URL
+  memos_api_key:
+    type: secret-input
+    required: true
+    label:
+      en_US: MemOS API key
+      zh_Hans: MemOS API key
+    placeholder:
+      en_US: Please input your MemOS API key
+      zh_Hans: 请输入你的 MemOS API key
+    help:
+      en_US: Get your MemOS API key from MemOS
+      zh_Hans: 从 MemOS 获取您的 MemOS API key
+    url: https://memos-dashboard.openmem.net/apikeys/
+tools:
+  - tools/add.yaml
+  - tools/search.yaml
+extra:
+  python:
+    source: provider/memos.py

@@ -1,0 +1,48 @@
+identity:
+  name: "search_memory"
+  author: "memtensor"
+  label:
+    en_US: "search memory"
+    zh_Hans: "记忆检索"
+description:
+  human:
+    en_US: "This tool queries the user's memory data and returns the most relevant fragments. You can retrieve memory in real time during the conversation between the user and the AI, or perform a global search throughout its entire memory to create user profiles or support personalized recommendations, thereby enhancing the consistency and personalization of the conversation. "
+    zh_Hans: "本插件工具查询用户的记忆数据并返回与输入最相关的片段。您可以在用户与AI的对话期间实时检索内存，或者在其整个内存中执行全局搜索以创建用户配置文件或支持个性化推荐，从而提高对话的一致性和个性化。"
+  llm: "This tool queries the user's memory data and returns the most relevant fragments."
+parameters:
+  - name: query
+    type: string
+    required: true
+    label:
+      en_US: Query string
+      zh_Hans: 查询语句
+    human_description:
+      en_US: "Text content to search within the memories."
+      zh_Hans: "文本内容用于在记忆中搜索。"
+    llm_description: "Text content to search within the memories."
+    form: llm
+  - name: user_id
+    type: string
+    required: true
+    label:
+      en_US: user_id
+      zh_Hans: 用户ID
+    human_description:
+      en_US: "Unique identifier of the user associated with the message."
+      zh_Hans: "与消息相关联的用户的唯一标识符。"
+    llm_description: "Unique identifier of the user associated with the message."
+    form: llm
+  - name: memory_limit_number
+    type: string
+    required: true
+    label:
+      en_US: memory limit number
+      zh_Hans: 限制返回的记忆数量
+    human_description:
+      en_US: "Limits the number of memory items returned, controlling the length of memory fragments."
+      zh_Hans: "限制返回的记忆项数量，从而控制整体片段的长度。"
+    llm_description: "Limits the number of memory items returned, controlling the length of memory fragments."
+    form: llm
+extra:
+  python:
+    source: tools/memos_search.py
