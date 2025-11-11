@@ -49,4 +49,4 @@ For specific instructions on how to use the tool, you can refer to the [MemOS AP
 
 For situations that require recording dialogue data and extracting relevant memories, you can construct the following workflow:
 
-[![MemOS workflow](/_assets/memos_workflow.svg)]
+![MemOS workflow](/_assets/memos_workflow.svg)
