@@ -27,7 +27,7 @@ To use this plugin, you need to provide the following credentials when adding it
 2.  **MemOS API Key:** **Your** API key for authenticating with **your** MemOS instance.
 
 You can obtain these from your [MemOS API Console](https://memos-dashboard.openmem.net/apikeys/) or configuration.
-![MemOS API console](/_assets/memos_console.png)
+![MemOS API console](/_assets/memos_console.svg)
 
 
 ## Usage
@@ -49,4 +49,4 @@ For specific instructions on how to use the tool, you can refer to the [MemOS AP
 
 For situations that require recording dialogue data and extracting relevant memories, you can construct the following workflow:
 
-[![MemOS workflow](/_assets/memos_workflow.png)]
+[![MemOS workflow](/_assets/memos_workflow.svg)]
