@@ -1,0 +1,621 @@
+app:
+  description: 世界上最懂我的AI
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: advanced-chat
+  name: 记忆管家
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/openai:0.2.6@e2665624a156f52160927bceac9e169bd7e5ae6b936ae82575e14c90af390e6e
+    version: null
+kind: app
+version: 0.4.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: code
+      id: 1762428430794-source-1762428442863-target
+      source: '1762428430794'
+      sourceHandle: source
+      target: '1762428442863'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: code
+        targetType: llm
+      id: 1762429810404-source-1762428430794-target
+      source: '1762429810404'
+      sourceHandle: source
+      target: '1762428430794'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: answer
+      id: 1762428430794-source-1762428542589-target
+      source: '1762428430794'
+      sourceHandle: source
+      target: '1762428542589'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: start
+        targetType: code
+      id: 1762428303849-source-1762429810404-target
+      source: '1762428303849'
+      sourceHandle: source
+      target: '1762429810404'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: start
+        targetType: code
+      id: 1762428303849-source-1762428442863-target
+      selected: false
+      source: '1762428303849'
+      sourceHandle: source
+      target: '1762428442863'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: tool
+      id: 1762428442863-source-1762761757128-target
+      source: '1762428442863'
+      sourceHandle: source
+      target: '1762761757128'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: tool
+      id: 1762428303849-source-1762761828995-target
+      source: '1762428303849'
+      sourceHandle: source
+      target: '1762761828995'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: tool
+        targetType: code
+      id: 1762761828995-source-1762429810404-target
+      source: '1762761828995'
+      sourceHandle: source
+      target: '1762429810404'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        selected: false
+        title: start
+        type: start
+        variables:
+        - default: '6'
+          hint: ''
+          label: memory_limit_number
+          max_length: 48
+          options: []
+          placeholder: ''
+          required: false
+          type: number
+          variable: memory_limit_number
+      height: 88
+      id: '1762428303849'
+      position:
+        x: -91.15879486302953
+        y: -120.25068539791857
+      positionAbsolute:
+        x: -91.15879486302953
+        y: -120.25068539791857
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gpt-4o
+          provider: langgenius/openai/openai
+        prompt_template:
+        - id: 1f2ffd08-7068-4463-8d47-f933fc7bdf6e
+          role: system
+          text: You are a helpful assistant.
+        - id: a70dd863-618c-4556-83d0-984559c524ff
+          role: user
+          text: '{{#1762429810404.prompt#}}'
+        retry_config:
+          max_retries: 3
+          retry_enabled: false
+          retry_interval: 1000
+        selected: false
+        structured_output_enabled: true
+        title: LLM Generation
+        type: llm
+        vision:
+          enabled: false
+      height: 88
+      id: '1762428430794'
+      position:
+        x: 535.3573156434863
+        y: -13.356482259787597
+      positionAbsolute:
+        x: 535.3573156434863
+        y: -13.356482259787597
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        code: "import json\ndef main(llm_answer, query, user_id, conversation_id):\n\
+          \n  messages = [\n      {\n        \"role\": \"user\",\n        \"content\"\
+          :query\n      },\n      {\n        \"role\": \"assistant\",\n        \"\
+          content\": llm_answer\n      }\n    ]\n  messages_str = json.dumps(messages,\
+          \ ensure_ascii=False)\n  return  {\n      \"user_id\": user_id,\n      \"\
+          conversation_id\":  conversation_id,\n      \"messages\": messages_str\n\
+          \      }"
+        code_language: python3
+        outputs:
+          conversation_id:
+            children: null
+            type: string
+          messages:
+            children: null
+            type: string
+          user_id:
+            children: null
+            type: string
+        selected: false
+        title: Post-response processing
+        type: code
+        variables:
+        - value_selector:
+          - '1762428430794'
+          - text
+          value_type: string
+          variable: llm_answer
+        - value_selector:
+          - sys
+          - query
+          value_type: string
+          variable: query
+        - value_selector:
+          - sys
+          - user_id
+          value_type: string
+          variable: user_id
+        - value_selector:
+          - sys
+          - conversation_id
+          value_type: string
+          variable: conversation_id
+      height: 52
+      id: '1762428442863'
+      position:
+        x: 813.2654666195826
+        y: -120.25068539791857
+      positionAbsolute:
+        x: 813.2654666195826
+        y: -120.25068539791857
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        answer: '{{#1762428430794.text#}}'
+        selected: false
+        title: response to user
+        type: answer
+        variables: []
+      height: 103
+      id: '1762428542589'
+      position:
+        x: 823.122498173865
+        y: -13.356482259787597
+      positionAbsolute:
+        x: 823.122498173865
+        y: -13.356482259787597
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        code: "import json\n\nANSWER_PROMPT_MEMOS = \"\"\"\n    You are a knowledgeable\
+          \ and helpful AI assistant.\n\n   # CONTEXT:\n   You have access to memories\
+          \ from two speakers in a conversation. These memories contain\n   timestamped\
+          \ information that may be relevant to answering the question.\n\n   # INSTRUCTIONS:\n\
+          \   1. Carefully analyze all provided memories. Synthesize information across\
+          \ different entries if needed to form a complete answer.\n   2. Pay close\
+          \ attention to the timestamps to determine the answer. If memories contain\
+          \ contradictory information, the **most recent memory** is the source of\
+          \ truth.\n   3. If the question asks about a specific event or fact, look\
+          \ for direct evidence in the memories.\n   4. Your answer must be grounded\
+          \ in the memories. However, you may use general world knowledge to interpret\
+          \ or complete information found within a memory (e.g., identifying a landmark\
+          \ mentioned by description).\n   5. If the question involves time references\
+          \ (like \"last year\", \"two months ago\", etc.), you **must** calculate\
+          \ the actual date based on the memory's timestamp. For example, if a memory\
+          \ from 4 May 2022 mentions \"went to India last year,\" then the trip occurred\
+          \ in 2021.\n   6. Always convert relative time references to specific dates,\
+          \ months, or years in your final answer.\n   7. Do not confuse character\
+          \ names mentioned in memories with the actual users who created them.\n\
+          \   8. The answer must be brief (under 5-6 words) and direct, with no extra\
+          \ description.\n\n   # APPROACH (Think step by step):\n   1. First, examine\
+          \ all memories that contain information related to the question.\n   2.\
+          \ Synthesize findings from multiple memories if a single entry is insufficient.\n\
+          \   3. Examine timestamps and content carefully, looking for explicit dates,\
+          \ times, locations, or events.\n   4. If the answer requires calculation\
+          \ (e.g., converting relative time references), perform the calculation.\n\
+          \   5. Formulate a precise, concise answer based on the evidence from the\
+          \ memories (and allowed world knowledge).\n   6. Double-check that your\
+          \ answer directly addresses the question asked and adheres to all instructions.\n\
+          \   7. Ensure your final answer is specific and avoids vague time references.\n\
+          \n   {context}\n\n   Question: {question}\n\n   Answer:\n   \"\"\"\n\n \
+          \  \ndef main(query, search_output):\n    context = \"\"\n    memory_list\
+          \ = []\n    if int(search_output[0][\"code\"]) == 0 and search_output[0][\"\
+          data\"]:\n        memory_list = search_output[0][\"data\"][\"memory_detail_list\"\
+          ]\n        memory_list = [item[\"memory_value\"] for item in memory_list]\n\
+          \    if memory_list:\n        context = \"\\n\".join(memory_list)\n    \
+          \    prompt = ANSWER_PROMPT_MEMOS.format(\n            context=context,\n\
+          \            question=query,\n        )\n    else:\n        prompt = f\"\
+          You are a knowledgeable and helpful AI assistant. Response this user's question\
+          \ directly:\\n{query}\"\n    \n    return  {\n        \"prompt\": prompt\n\
+          \    }\n"
+        code_language: python3
+        default_value:
+        - key: prompt
+          type: string
+          value: ''
+        error_strategy: default-value
+        outputs:
+          prompt:
+            children: null
+            type: string
+        selected: false
+        title: Post-recall handling
+        type: code
+        variables:
+        - value_selector:
+          - '1762761828995'
+          - json
+          value_type: array[object]
+          variable: search_output
+        - value_selector:
+          - sys
+          - query
+          value_type: string
+          variable: query
+      height: 88
+      id: '1762429810404'
+      position:
+        x: 249.49781201990072
+        y: -13.356482259787597
+      positionAbsolute:
+        x: 249.49781201990072
+        y: -13.356482259787597
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        is_team_authorization: true
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Unique identifier of the user associated with the message.
+            ja_JP: Unique identifier of the user associated with the message.
+            pt_BR: Unique identifier of the user associated with the message.
+            zh_Hans: 与消息相关联的用户的唯一标识符。
+          label:
+            en_US: user_id
+            ja_JP: user_id
+            pt_BR: user_id
+            zh_Hans: 用户ID
+          llm_description: Unique identifier of the user associated with the message.
+          max: null
+          min: null
+          name: user_id
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Unique identifier of the conversation.
+            ja_JP: Unique identifier of the conversation.
+            pt_BR: Unique identifier of the conversation.
+            zh_Hans: 对话的唯一标识符。
+          label:
+            en_US: conversation_id
+            ja_JP: conversation_id
+            pt_BR: conversation_id
+            zh_Hans: 对话ID
+          llm_description: Unique identifier of the conversation.
+          max: null
+          min: null
+          name: conversation_id
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Content of the message.
+            ja_JP: Content of the message.
+            pt_BR: Content of the message.
+            zh_Hans: 消息的内容。
+          label:
+            en_US: messages
+            ja_JP: messages
+            pt_BR: messages
+            zh_Hans: 对话信息
+          llm_description: Content of the message.
+          max: null
+          min: null
+          name: messages
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        params:
+          conversation_id: ''
+          messages: ''
+          user_id: ''
+        provider_id: 422f4192-64ee-4bc0-921d-ee51604705e8/memos/memos
+        provider_name: 422f4192-64ee-4bc0-921d-ee51604705e8/memos/memos
+        provider_type: builtin
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 345
+        selected: false
+        title: 记忆添加
+        tool_configurations: {}
+        tool_description: 本插件工具可以将一条或多条消息批量导入到MemOS记忆存储数据库，能够在未来的对话中检索，以支持聊天历史管理、用户行为跟踪和个性化交互。
+        tool_label: 记忆添加
+        tool_name: add_memory
+        tool_node_version: '2'
+        tool_parameters:
+          conversation_id:
+            type: mixed
+            value: '{{#1762428442863.conversation_id#}}'
+          messages:
+            type: mixed
+            value: '{{#1762428442863.messages#}}'
+          user_id:
+            type: mixed
+            value: '{{#1762428442863.user_id#}}'
+        type: tool
+      height: 81
+      id: '1762761757128'
+      position:
+        x: 1105.973887196621
+        y: -29.250685397918573
+      positionAbsolute:
+        x: 1105.973887196621
+        y: -29.250685397918573
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        is_team_authorization: true
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Text content to search within the memories.
+            ja_JP: Text content to search within the memories.
+            pt_BR: Text content to search within the memories.
+            zh_Hans: 文本内容用于在记忆中搜索。
+          label:
+            en_US: Query string
+            ja_JP: Query string
+            pt_BR: Query string
+            zh_Hans: 查询语句
+          llm_description: Text content to search within the memories.
+          max: null
+          min: null
+          name: query
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Unique identifier of the user associated with the message.
+            ja_JP: Unique identifier of the user associated with the message.
+            pt_BR: Unique identifier of the user associated with the message.
+            zh_Hans: 与消息相关联的用户的唯一标识符。
+          label:
+            en_US: user_id
+            ja_JP: user_id
+            pt_BR: user_id
+            zh_Hans: 用户ID
+          llm_description: Unique identifier of the user associated with the message.
+          max: null
+          min: null
+          name: user_id
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Limits the number of memory items returned, controlling the length
+              of memory fragments.
+            ja_JP: Limits the number of memory items returned, controlling the length
+              of memory fragments.
+            pt_BR: Limits the number of memory items returned, controlling the length
+              of memory fragments.
+            zh_Hans: 限制返回的记忆项数量，从而控制整体片段的长度。
+          label:
+            en_US: memory limit number
+            ja_JP: memory limit number
+            pt_BR: memory limit number
+            zh_Hans: 限制返回的记忆数量
+          llm_description: Limits the number of memory items returned, controlling
+            the length of memory fragments.
+          max: null
+          min: null
+          name: memory_limit_number
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        params:
+          memory_limit_number: ''
+          query: ''
+          user_id: ''
+        provider_id: 422f4192-64ee-4bc0-921d-ee51604705e8/memos/memos
+        provider_name: 422f4192-64ee-4bc0-921d-ee51604705e8/memos/memos
+        provider_type: builtin
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 198
+        selected: false
+        title: 记忆检索
+        tool_configurations: {}
+        tool_description: 本插件工具查询用户的记忆数据并返回与输入最相关的片段。您可以在用户与AI的对话期间实时检索内存，或者在其整个内存中执行全局搜索以创建用户配置文件或支持个性化推荐，从而提高对话的一致性和个性化。
+        tool_label: 记忆检索
+        tool_name: search_memory
+        tool_node_version: '2'
+        tool_parameters:
+          memory_limit_number:
+            type: mixed
+            value: '{{#1762428303849.memory_limit_number#}}'
+          query:
+            type: mixed
+            value: '{{#sys.query#}}'
+          user_id:
+            type: mixed
+            value: '{{#sys.user_id#}}'
+        type: tool
+      height: 81
+      id: '1762761828995'
+      position:
+        x: 209.7674523688064
+        y: -181.19757230211945
+      positionAbsolute:
+        x: 209.7674523688064
+        y: -181.19757230211945
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    viewport:
+      x: 141.4973603772271
+      y: 256.7555365074038
+      zoom: 0.5523485819508821
+  rag_pipeline_variables: []
