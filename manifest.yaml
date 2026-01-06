@@ -3,10 +3,10 @@ type: plugin
 author: memtensor
 name: memos
 label:
-  en_US: memos
-  ja_JP: memos
-  zh_Hans: memos
-  pt_BR: memos
+  en_US: MemOS
+  ja_JP: MemOS
+  zh_Hans: MemOS
+  pt_BR: MemOS
 description:
   en_US: This tool enables users to access the addition and search functions of MemOS memory, access conversation content, and provide users with efficient memory management services.
   zh_Hans: This tool enables users to access the addition and search functions of MemOS memory, access conversation content, and provide users with efficient memory management services.
